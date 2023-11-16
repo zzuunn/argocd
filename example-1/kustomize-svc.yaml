@@ -1,12 +1,33 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-nginx
+  name: my-nginx2
   labels:
-    run: my-nginx
+    run: my-nginx2
 spec:
   ports:
   - port: 80
     protocol: TCP
   selector:
-    run: my-nginx
+    run: my-nginx22
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx22
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx2
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx2
+    spec:
+      containers:
+      - name: my-nginx2
+        image: nginx
+        ports:
+        - containerPort: 80
