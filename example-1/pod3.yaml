@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: argocd-helloworld-3
+  labels:
+    name: argocd-helloworld-3
+spec:
+  containers:
+  - name: argocd-helloworld-3
+    image: nginx
+    resources:
+      limits:
+        memory: "32Mi"
+        cpu: "0.1"
+    ports:
+      - containerPort: 80
